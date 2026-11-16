@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>9 Box IFA Celtics</title>
+<style>
+:root{--bg:#f4f6f9;--card:#fff;--ink:#14213d;--muted:#5b6475;--line:#e3e7ee;--accent:#0b4f8f;
+--b1:#ee2a2e;--b2:#0b4f8f;--b3:#fdbe00;--b4:#0b4f8f;--b5:#b9ddf7;--b6:#b5e3a1;--b7:#b5e3a1;--b8:#b5e3a1;--b9:#12a84b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1320px;margin:0 auto;padding:20px 16px 48px}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:flex-end;margin-bottom:16px}
+h1{margin:0;font-size:24px;color:var(--accent);letter-spacing:.2px}
+.sub{color:var(--muted);font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.kpi b{display:block;font-size:24px}
+.kpi span{color:var(--muted);font-size:12px}
+.filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;align-items:end}
+.filters label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:3px}
+select,input[type=search]{width:100%;padding:7px 8px;border:1px solid var(--line);border-radius:8px;background:#fff;font:inherit;color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:12px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{border:0;background:#fff;padding:6px 10px;font:inherit;font-size:13px;cursor:pointer;color:var(--ink)}
+.seg button.on{background:var(--accent);color:#fff}
+.btn{border:1px solid var(--accent);background:#fff;color:var(--accent);padding:7px 12px;border-radius:8px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.btn.primary{background:var(--accent);color:#fff}
+.btn:hover{filter:brightness(.95)}
+h2{font-size:17px;margin:0 0 12px}
+/* 9 box */
+.ninewrap{display:grid;grid-template-columns:34px 1fr;grid-template-rows:1fr 34px;gap:6px}
+.yaxis{writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;font-weight:700;color:var(--accent);font-size:13px;letter-spacing:.5px}
+.xaxis{grid-column:2;text-align:center;font-weight:700;color:var(--accent);font-size:13px;letter-spacing:.5px;align-self:center}
+.grid9{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.box{border-radius:6px;padding:10px;min-height:190px;display:flex;flex-direction:column;color:#0d2340}
+.box.dark{color:#fff}
+.box .hd{text-align:center;margin-bottom:8px}
+.box .num{font-size:12px;font-weight:700;opacity:.85}
+.box .ttl{font-weight:800;font-size:15px}
+.box .lv{font-size:11.5px;font-weight:600;opacity:.9}
+.box .cnt{font-size:12px;font-weight:700;margin-top:4px}
+.chips{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;align-content:flex-start;flex:1}
+.chip{background:rgba(255,255,255,.88);color:#14213d;border-radius:999px;padding:3px 9px;font-size:11.5px;font-weight:600;cursor:pointer;border:1px solid rgba(0,0,0,.08);white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.chip:hover{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.chip small{font-weight:500;color:#5b6475}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted);margin-top:10px}
+/* table */
+.tblwrap{overflow:auto;max-height:620px;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th,td{padding:7px 9px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+th{position:sticky;top:0;background:#eef2f8;font-size:11.5px;text-transform:uppercase;letter-spacing:.3px;color:#3a4558;cursor:pointer;user-select:none;z-index:1}
+td.n{text-align:right;font-variant-numeric:tabular-nums}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:#f6f9fd}
+.pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700}
+.lvA{background:#d9f2df;color:#0b6b2e}.lvM{background:#e3eefb;color:#0b4f8f}.lvB{background:#fde2e2;color:#a3151a}
+.bx{display:inline-flex;align-items:center;gap:6px}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block;border:1px solid rgba(0,0,0,.15)}
+.note{font-size:12.5px;color:var(--muted)}
+.note li{margin-bottom:4px}
+.warn{background:#fff7e0;border:1px solid #f3d27a;border-radius:8px;padding:8px 10px;font-size:12.5px;margin-top:10px}
+/* modal */
+.ov{position:fixed;inset:0;background:rgba(10,20,40,.45);display:none;align-items:flex-start;justify-content:center;padding:30px 12px;z-index:20;overflow:auto}
+.ov.show{display:flex}
+.modal{background:#fff;border-radius:14px;max-width:780px;width:100%;padding:20px;position:relative}
+.modal .x{position:absolute;right:14px;top:10px;border:0;background:none;font-size:24px;cursor:pointer;color:var(--muted)}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:12px 0}
+.mstat{border:1px solid var(--line);border-radius:10px;padding:10px}
+.mstat span{font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:600}
+.mstat b{display:block;font-size:20px}
+.bar{height:8px;background:#eef1f5;border-radius:4px;overflow:hidden;margin-top:3px}
+.bar i{display:block;height:100%;background:var(--accent)}
+.mt{margin-top:14px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13px}
+.kv span{color:var(--muted)}
+.empty{color:var(--muted);font-style:italic;font-size:12px;text-align:center;margin-top:8px}
+@media (max-width:760px){.box{min-height:120px;padding:6px}.box .ttl{font-size:12px}.box .lv{display:none}.chip{font-size:10.5px;padding:2px 6px}}
+@media print{.filters,.row .btns,.noprint{display:none!important}body{background:#fff}.card{break-inside:avoid}.tblwrap{max-height:none;overflow:visible}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <h1>Matriz de Talento: 9 Box IFA Celtics</h1>
+    <div class="sub">Ciclo <b>“Potencial - anual - prueba”</b> (ID 632094) · Comunidad 297065 · Datos al 13/11/2026</div>
+  </div>
+  <div class="noprint" style="display:flex;gap:8px;flex-wrap:wrap">
+    <button class="btn" onclick="window.print()">Imprimir / PDF</button>
+  </div>
+</header>
+
+<div class="kpis" id="kpis"></div>
+
+<div class="card noprint">
+  <div class="filters" id="filters"></div>
+  <div class="row">
+    <div>
+      <span class="note" style="margin-right:6px">Ponderación jefe / pares:</span>
+      <span class="seg" id="wseg">
+        <button data-w="100" class="on">Jefe 100% (config. del ciclo)</button>
+        <button data-w="50">Jefe 50% · Pares 50%</button>
+      </span>
+    </div>
+    <div class="btns" style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn" onclick="resetF()">Limpiar filtros</button>
+      <button class="btn primary" onclick="dlSummary()">Descargar resumen (CSV)</button>
+      <button class="btn primary" onclick="dlDetail()">Descargar detalle completo (CSV)</button>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Matriz 9 Box <span class="note" id="nbcount"></span></h2>
+  <div class="ninewrap">
+    <div class="yaxis">DESEMPEÑO ACTUAL →</div>
+    <div class="grid9" id="grid9"></div>
+    <div class="xaxis">POTENCIAL FUTURO →</div>
+  </div>
+  <div class="legend">Hacé clic en un nombre para ver el detalle de la persona. Los cuadrantes se calculan en automático con los resultados de Desempeño (objetivos + competencias) y Potencial (Learning Agility).</div>
+</div>
+
+<div class="card">
+  <h2>Detalle por colaborador <span class="note" id="tcount"></span></h2>
+  <div class="tblwrap"><table id="tbl"><thead></thead><tbody></tbody></table></div>
+</div>
+
+<div class="card" id="pendCard">
+  <h2>Sin resultado todavía <span class="note" id="pcount"></span></h2>
+  <div class="note" style="margin-bottom:8px">Personas del ciclo cuya evaluación del jefe no está finalizada. No aparecen en la matriz hasta que se complete.</div>
+  <div class="tblwrap" style="max-height:340px"><table id="ptbl"><thead><tr><th>Colaborador</th><th>Nro</th><th>Área</th><th>Puesto</th><th>Evaluador (jefe)</th><th>Estado</th></tr></thead><tbody></tbody></table></div>
+</div>
+
+<div class="card note">
+  <h2 style="color:var(--ink)">Cómo se calcula</h2>
+  <ul>
+    <li><b>Desempeño</b> = Objetivos 70% + Competencias 30% (configuración del ciclo). Si la persona no tiene objetivos cargados, el desempeño es 100% competencias (así lo calcula la plataforma). Se expresa en escala 1–5 (1 Insuficiente · 2 Requiere mejora · 3 Cumple · 4 Sobresaliente · 5 Excepcional).</li>
+    <li><b>Potencial</b> = promedio ponderado de las 16 preguntas de Learning Agility (escala 1–5). Se muestra también el promedio de cada factor: Agilidad Mental, para el Cambio, con Personas y para Obtener Resultados. El potencial no suma a la calificación de desempeño: solo ubica a la persona en la matriz.</li>
+    <li><b>Niveles</b>: 4.1 a 5.0 = Alto · 3.0 a 4.0 = Óptimo / Medio · 1.0 a 2.9 = Bajo (el puntaje se redondea a un decimal antes de clasificar).</li>
+    <li><b>Jefe / pares</b>: el ciclo está configurado con la evaluación del jefe al 100% y pares al 0%. Con el selector podés ver el escenario 50/50 acordado en las notas de configuración. Solo cambia para quienes tienen evaluación de pares finalizada.</li>
+    <li>Solo cuentan evaluaciones <b>finalizadas</b>. Las que están pendientes o con edición solicitada figuran en “Sin resultado todavía”.</li>
+  </ul>
+  <div class="warn">Ciclo de prueba: la ponderación de los factores de potencial en la plataforma da 28% a Agilidad para Obtener Resultados y 24% a cada uno de los otros (el documento pide 25% cada uno). Conviene ajustar los pesos de las preguntas antes del ciclo real.</div>
+</div>
+</div>
+
+<div class="ov" id="ov" onclick="if(event.target===this)closeM()"><div class="modal" id="modal"></div></div>
+
+<script>
+const REV = [{"rid": 6749284, "t": "B", "st": "FINISHED", "uid": 9506569, "nombre": "Teresita Bowyer", "nro": "—", "ev": "ROCIO VALDEZ GUIZAR", "sp": 87.5, "fs": 84.25, "gs": 87.5, "cs": 87.5, "area": "RECURSOS HUMANOS", "jer": "Sin dato", "sede": "Sin dato", "puesto": "Sin dato", "gen": "Sin dato", "con": "Sin dato", "comp": [["Análisis", 4], ["Comunicación", 5], ["Ética y valores", 4], ["Orientación al cliente", 5], ["Orientación a resultados", 5], ["Trabajo en Equipo (Colaboración)", 4]], "obj": [["Desarrollar proyecto estratégico", 25, 4, "80"], ["Incrementar ventas", 25, 5, "10"], ["Mejorar satisfacción del cliente", 25, 5, "100"], ["Reducir tiempos de respuesta", 25, 4, "0"]], "pf": [4.25, 4.5, 4.5, 4.25]}, {"rid": 6749283, "t": "B", "st": "PENDING", "uid": 9538706, "nombre": "ROCIO VALDEZ GUIZAR", "nro": "102286", "ev": "ALAN DOUGLAS SMITHERS HOGG", "sp": null, "fs": null, "gs": null, "cs": null, "area": "DIRECCIÓN RECURSOS HUMANOS", "jer": "Director", "sede": "OFICINAS CDMX", "puesto": "DIRECTOR DE RECURSOS HUMANOS", "gen": "FEMENINO", "con": "Tiempo Indeterminado"}, {"rid": 6749267, "t": "B", "st": "FINISHED", "uid": 9669978, "nombre": "ITZEL TZITLALI ARIAS CAMARGO", "nro": "101532", "ev": "NANCY GONZALEZ RUIZ", "sp": 58.75, "fs": 78.0, "gs": 50.0, "cs": 79.165, "area": "RECURSOS HUMANOS", "jer": "Jefe", "sede": "PLANTA CIVAC", "puesto": "JEFE DE RECLUTAMIENTO Y CAPACITACION", "gen": "FEMENINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 4], ["Comunicación", 4], ["Ética y valores", 5], ["Orientación al cliente", 4], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 4]], "obj": [["Aplicar 2 Cursos LinkedIn Learning", 15, 3, "0"], ["Auditoria de Cofepris al 100%", 35, 3, "0"], ["Cubrir vacante de Mantenimiento", 50, 3, "0"]], "pf": [4.25, 4.0, 4.25, 4.0]}, {"rid": 6749268, "t": "B", "st": "PENDING", "uid": 9670401, "nombre": "JACQUELINE HERNANDEZ SANTILLAN", "nro": "101969", "ev": "ITZEL TZITLALI ARIAS CAMARGO", "sp": null, "fs": null, "gs": null, "cs": null, "area": "RECURSOS HUMANOS", "jer": "Administrativo", "sede": "OFICINAS CIVAC", "puesto": "ANALISTA DE CAPACITACION", "gen": "FEMENINO", "con": "Tiempo Indeterminado"}, {"rid": 6749276, "t": "B", "st": "FINISHED", "uid": 9670516, "nombre": "JOSE MARTIN ANGELES MENDOZA", "nro": "102147", "ev": "JUAN FERNANDO GARCIA RUIZ", "sp": 66.67, "fs": 56.0, "gs": null, "cs": 66.665, "area": "SEGURIDAD PATRIMONIAL", "jer": "Coordinador", "sede": "OFICINAS CIVAC", "puesto": "COORDINADOR DE GESTION AMBIENTAL", "gen": "MASCULINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 3], ["Comunicación", 4], ["Ética y valores", 4], ["Orientación al cliente", 4], ["Orientación a resultados", 3], ["Trabajo en Equipo (Colaboración)", 4]], "pf": [3.0, 3.25, 3.75, 3.0]}, {"rid": 6749290, "t": "P", "st": "FINISHED", "uid": 10745311, "nombre": "NANCY GONZALEZ RUIZ", "nro": "100359", "ev": "JUAN FERNANDO GARCIA RUIZ", "sp": 47.5, "fs": 58.0, "gs": 50.0, "cs": 41.668, "area": "RECURSOS HUMANOS", "jer": "Gerente", "sede": "OFICINAS CIVAC", "puesto": "GERENTE DE RECURSOS HUMANOS", "gen": "FEMENINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 3], ["Comunicación", 2], ["Ética y valores", 3], ["Orientación al cliente", 3], ["Orientación a resultados", 3], ["Trabajo en Equipo (Colaboración)", 2]], "obj": [["Ejercer el presupuesto acorde a lo planeado", 25, 3, "125"], ["Modelaje de plataforma Humand", 25, 3, "22.22"], ["Presentación del dictamen de IMSS 2025", 50, 3, "100"]], "pf": [3.25, 3.0, 3.5, 3.5]}, {"rid": 6749282, "t": "B", "st": "FINISHED", "uid": 10745311, "nombre": "NANCY GONZALEZ RUIZ", "nro": "100359", "ev": "ROCIO VALDEZ GUIZAR", "sp": 46.25, "fs": 36.0, "gs": 50.0, "cs": 37.5, "area": "RECURSOS HUMANOS", "jer": "Gerente", "sede": "OFICINAS CIVAC", "puesto": "GERENTE DE RECURSOS HUMANOS", "gen": "FEMENINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 2], ["Comunicación", 3], ["Ética y valores", 2], ["Orientación al cliente", 3], ["Orientación a resultados", 3], ["Trabajo en Equipo (Colaboración)", 2]], "obj": [["Ejercer el presupuesto acorde a lo planeado", 25, 3, "125"], ["Modelaje de plataforma Humand", 25, 3, "22.22"], ["Presentación del dictamen de IMSS 2025", 50, 3, "100"]], "pf": [2.0, 2.25, 3.0, 2.5]}, {"rid": 6749254, "t": "B", "st": "FINISHED", "uid": 10745312, "nombre": "EDNA ELENA LUNA GOMEZ", "nro": "101087", "ev": "NANCY GONZALEZ RUIZ", "sp": 66.67, "fs": 69.0, "gs": null, "cs": 66.665, "area": "RECURSOS HUMANOS", "jer": "Administrativo", "sede": "OFICINAS CIVAC", "puesto": "ANALISTA DE RECURSOS HUMANOS", "gen": "FEMENINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 3], ["Comunicación", 3], ["Ética y valores", 5], ["Orientación al cliente", 4], ["Orientación a resultados", 3], ["Trabajo en Equipo (Colaboración)", 4]], "pf": [3.75, 3.5, 3.75, 4.0]}, {"rid": 6749255, "t": "B", "st": "PENDING", "uid": 10745314, "nombre": "EDUARDO VILLAVICENCIO MIRON", "nro": "101900", "ev": "ITZEL TZITLALI ARIAS CAMARGO", "sp": null, "fs": null, "gs": null, "cs": null, "area": "RECURSOS HUMANOS", "jer": "Administrativo", "sede": "OFICINAS CIVAC", "puesto": "AUXILIAR DE RECLUTAMIENTO", "gen": "MASCULINO", "con": "Tiempo Indeterminado"}, {"rid": 6749277, "t": "B", "st": "PENDING", "uid": 10745317, "nombre": "JOSE RICARDO BARRERA OSEGUEDA", "nro": "101994", "ev": "ITZEL TZITLALI ARIAS CAMARGO", "sp": null, "fs": null, "gs": null, "cs": null, "area": "RECURSOS HUMANOS", "jer": "Administrativo", "sede": "OFICINAS CIVAC", "puesto": "ANALISTA DE RECLUTAMIENTO", "gen": "MASCULINO", "con": "Tiempo Indeterminado"}, {"rid": 6749266, "t": "B", "st": "PENDING", "uid": 10745318, "nombre": "ISMAEL CAMACHO DIAZ", "nro": "102445", "ev": "ITZEL TZITLALI ARIAS CAMARGO", "sp": null, "fs": null, "gs": null, "cs": null, "area": "RECURSOS HUMANOS", "jer": "Administrativo", "sede": "PLANTA CIVAC", "puesto": "TRAINEE", "gen": "MASCULINO", "con": "Eventual"}, {"rid": 6749260, "t": "B", "st": "FINISHED", "uid": 10745319, "nombre": "FATIMA OLAC GONZALEZ", "nro": "100569", "ev": "NANCY GONZALEZ RUIZ", "sp": 70.83, "fs": 72.0, "gs": null, "cs": 70.833, "area": "RECURSOS HUMANOS", "jer": "Jefe", "sede": "OFICINAS CIVAC", "puesto": "JEFE DE SUELDOS Y COMPENSACION", "gen": "FEMENINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 4], ["Comunicación", 3], ["Ética y valores", 5], ["Orientación al cliente", 3], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 4]], "pf": [4.0, 3.75, 3.75, 4.0]}, {"rid": 6749285, "t": "B", "st": "PENDING", "uid": 10745320, "nombre": "VICTOR ANTONIO PEÑA GARCIA", "nro": "100821", "ev": "FATIMA OLAC GONZALEZ", "sp": null, "fs": null, "gs": null, "cs": null, "area": "RECURSOS HUMANOS", "jer": "Coordinador", "sede": "OFICINAS CIVAC", "puesto": "COORDINADOR DE BENEFICIOS", "gen": "MASCULINO", "con": "Tiempo Indeterminado"}, {"rid": 6749275, "t": "B", "st": "FINISHED", "uid": 10745321, "nombre": "JOSE MANUEL TORRES ZAGAL", "nro": "101710", "ev": "VICTOR ANTONIO PEÑA GARCIA", "sp": 54.17, "fs": 78.5, "gs": null, "cs": 54.165, "area": "RECURSOS HUMANOS", "jer": "Administrativo", "sede": "OFICINAS CIVAC", "puesto": "ADMINISTRATIVO DE FLOTILLAS", "gen": "MASCULINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 3], ["Comunicación", 3], ["Ética y valores", 4], ["Orientación al cliente", 3], ["Orientación a resultados", 3], ["Trabajo en Equipo (Colaboración)", 3]], "pf": [4, 4, 4, 4.5]}, {"rid": 6749251, "t": "B", "st": "PENDING", "uid": 10745322, "nombre": "CARLA JOANA JUAREZ REYES", "nro": "102307", "ev": "FATIMA OLAC GONZALEZ", "sp": null, "fs": null, "gs": null, "cs": null, "area": "RECURSOS HUMANOS", "jer": "Administrativo", "sede": "OFICINAS CIVAC", "puesto": "ESPECIALISTA DE NOMINAS", "gen": "FEMENINO", "con": "Tiempo Indeterminado"}, {"rid": 6749286, "t": "B", "st": "FINISHED", "uid": 10745323, "nombre": "VICTOR SAUL FLORES RAMIREZ", "nro": "102126", "ev": "NANCY GONZALEZ RUIZ", "sp": 54.17, "fs": 56.0, "gs": null, "cs": 54.165, "area": "RECURSOS HUMANOS", "jer": "Administrativo", "sede": "OFICINAS CIVAC", "puesto": "GESTOR", "gen": "MASCULINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 3], ["Comunicación", 3], ["Ética y valores", 4], ["Orientación al cliente", 3], ["Orientación a resultados", 3], ["Trabajo en Equipo (Colaboración)", 3]], "pf": [3.25, 3.5, 3.25, 3.0]}, {"rid": 6749269, "t": "B", "st": "PENDING", "uid": 10745324, "nombre": "JAVIER SORIANO BASILIO", "nro": "102520", "ev": "FATIMA OLAC GONZALEZ", "sp": null, "fs": null, "gs": null, "cs": null, "area": "RECURSOS HUMANOS", "jer": "Administrativo", "sede": "OFICINAS CIVAC", "puesto": "TRAINEE DE NOMINAS", "gen": "MASCULINO", "con": "Eventual"}, {"rid": 6749252, "t": "B", "st": "FINISHED", "uid": 10745325, "nombre": "CARLOS ADRIAN ZARCO RAMOS", "nro": "101019", "ev": "NANCY GONZALEZ RUIZ", "sp": 66.67, "fs": 64.0, "gs": null, "cs": 66.668, "area": "RECURSOS HUMANOS", "jer": "Administrativo", "sede": "OFICINAS CDMX", "puesto": "CHOFER GESTOR", "gen": "MASCULINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 3], ["Comunicación", 3], ["Ética y valores", 4], ["Orientación al cliente", 4], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 4]], "pf": [3.25, 3.75, 3.75, 3.5]}, {"rid": 6749265, "t": "B", "st": "PENDING", "uid": 10745326, "nombre": "HILDA MARIN MARTINEZ", "nro": "102151", "ev": "ITZEL TZITLALI ARIAS CAMARGO", "sp": null, "fs": null, "gs": null, "cs": null, "area": "RECURSOS HUMANOS", "jer": "Administrativo", "sede": "OFICINAS CDMX", "puesto": "RECEPCIONISTA DF", "gen": "FEMENINO", "con": "Tiempo Indeterminado"}, {"rid": 6749262, "t": "B", "st": "FINISHED", "uid": 10745327, "nombre": "GABRIELA HERRERA BONILLA", "nro": "100933", "ev": "NANCY GONZALEZ RUIZ", "sp": 63.75, "fs": 70.5, "gs": 62.5, "cs": 66.665, "area": "RECURSOS HUMANOS", "jer": "Coordinador", "sede": "PLANTA CIVAC", "puesto": "COORD SEGURIDAD Y SALUD OCUPACIONAL", "gen": "FEMENINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 3], ["Comunicación", 4], ["Ética y valores", 4], ["Orientación al cliente", 3], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 4]], "obj": [["Elaboración del Presupuesto 2027", 25, 3, "0"], ["Revisar resultados de la NOM-035 para su publicación", 25, 3, "0"], ["Verificar información requerida para VELAVO", 50, 4, "0"]], "pf": [3.75, 3.5, 4.0, 4.0]}, {"rid": 6749274, "t": "B", "st": "FINISHED", "uid": 10745328, "nombre": "JOSE GILBERTO DE LA HUERTA ESPINOSA", "nro": "101571", "ev": "GABRIELA HERRERA BONILLA", "sp": 53.75, "fs": 73.5, "gs": 50.0, "cs": 62.5, "area": "RECURSOS HUMANOS", "jer": "Administrativo", "sede": "PLANTA CIVAC", "puesto": "ENFERMERO LABORAL", "gen": "MASCULINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 4], ["Comunicación", 2], ["Ética y valores", 5], ["Orientación al cliente", 3], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 3]], "obj": [["Auditoria a comedor", 20, 3, "0"], ["Estudio de Ergonomía 2026", 30, 3, "0"], ["Inventario de Medicamento y material de curación.", 20, 3, "0"], ["Revisión de Locker´s", 10, 3, "0"], ["Verificación de Uso de EPP", 20, 3, "0"]], "pf": [4.25, 4.25, 3.25, 4.0]}, {"rid": 6749281, "t": "B", "st": "FINISHED", "uid": 10745329, "nombre": "MIRIAM GUADALUPE GOMEZ SOTO", "nro": "102075", "ev": "GABRIELA HERRERA BONILLA", "sp": 62.5, "fs": 85.75, "gs": 50.0, "cs": 91.665, "area": "RECURSOS HUMANOS", "jer": "Administrativo", "sede": "PLANTA CIVAC", "puesto": "ENFERMERO LABORAL", "gen": "FEMENINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 5], ["Comunicación", 5], ["Ética y valores", 5], ["Orientación al cliente", 5], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 4]], "obj": [["ANÁLISIS CLÍNICOS - TEMPUS", 15, 3, "0"], ["NOM-035 Factores de riesgo psicosocial", 35, 3, "0"], ["Política NOM-035 Factores de riesgo psicosocial", 50, 3, "0"]], "pf": [4.75, 4.25, 4.5, 4.25]}, {"rid": 6749280, "t": "B", "st": "FINISHED", "uid": 10745330, "nombre": "MARIA ANTONIETA ZACATENCO LUZ", "nro": "101224", "ev": "GABRIELA HERRERA BONILLA", "sp": 87.5, "fs": 62.75, "gs": null, "cs": 87.5, "area": "RECURSOS HUMANOS", "jer": "Administrativo", "sede": "OFICINAS CDMX", "puesto": "AUXILIAR DE LIMPIEZA", "gen": "FEMENINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 3], ["Comunicación", 4], ["Ética y valores", 5], ["Orientación al cliente", 5], ["Orientación a resultados", 5], ["Trabajo en Equipo (Colaboración)", 5]], "pf": [3.0, 3.25, 4.0, 3.75]}, {"rid": 6749289, "t": "P", "st": "FINISHED", "uid": 10745331, "nombre": "JUAN FERNANDO GARCIA RUIZ", "nro": "101973", "ev": "NANCY GONZALEZ RUIZ", "sp": 58.33, "fs": 72.0, "gs": null, "cs": 58.333, "area": "SEGURIDAD PATRIMONIAL", "jer": "Gerente", "sede": "OFICINAS CIVAC", "puesto": "GERENTE DE SEGURIDAD PATRIMONIAL", "gen": "MASCULINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 3], ["Comunicación", 3], ["Ética y valores", 4], ["Orientación al cliente", 3], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 3]], "pf": [3.5, 4.0, 4.0, 4.0]}, {"rid": 6749279, "t": "B", "st": "FINISHED", "uid": 10745331, "nombre": "JUAN FERNANDO GARCIA RUIZ", "nro": "101973", "ev": "ROCIO VALDEZ GUIZAR", "sp": 58.33, "fs": 59.25, "gs": null, "cs": 58.333, "area": "SEGURIDAD PATRIMONIAL", "jer": "Gerente", "sede": "OFICINAS CIVAC", "puesto": "GERENTE DE SEGURIDAD PATRIMONIAL", "gen": "MASCULINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 3], ["Comunicación", 3], ["Ética y valores", 4], ["Orientación al cliente", 3], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 3]], "pf": [3.0, 3.75, 3.5, 3.25]}, {"rid": 6749257, "t": "B", "st": "FINISHED", "uid": 10745332, "nombre": "ENRIQUE MENDEZ BARCENAS", "nro": "100818", "ev": "JUAN FERNANDO GARCIA RUIZ", "sp": 79.17, "fs": 72.0, "gs": null, "cs": 79.165, "area": "SEGURIDAD PATRIMONIAL", "jer": "Coordinador", "sede": "OFICINAS CIVAC", "puesto": "COORDINADOR DE SEGURIDAD", "gen": "MASCULINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 4], ["Comunicación", 4], ["Ética y valores", 5], ["Orientación al cliente", 4], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 4]], "pf": [3.75, 3.75, 4.0, 4.0]}, {"rid": 6749261, "t": "B", "st": "FINISHED", "uid": 10745333, "nombre": "GABINO ALVAREZ ARROYO", "nro": "100285", "ev": "ENRIQUE MENDEZ BARCENAS", "sp": 79.17, "fs": 61.25, "gs": null, "cs": 79.165, "area": "SEGURIDAD PATRIMONIAL", "jer": "Administrativo", "sede": "PLANTA CIVAC", "puesto": "ELEMENTO DE SEGURIDAD", "gen": "MASCULINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 4], ["Comunicación", 4], ["Ética y valores", 5], ["Orientación al cliente", 4], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 4]], "pf": [3.5, 3.25, 3.25, 3.75]}, {"rid": 6749250, "t": "B", "st": "FINISHED", "uid": 10745334, "nombre": "AARON JUAREZ TORRES", "nro": "100713", "ev": "ENRIQUE MENDEZ BARCENAS", "sp": 79.17, "fs": 67.5, "gs": null, "cs": 79.165, "area": "SEGURIDAD PATRIMONIAL", "jer": "Administrativo", "sede": "PLANTA CIVAC", "puesto": "ELEMENTO DE SEGURIDAD", "gen": "MASCULINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 4], ["Comunicación", 4], ["Ética y valores", 5], ["Orientación al cliente", 4], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 4]], "pf": [3.0, 4.0, 3.75, 4.0]}, {"rid": 6749259, "t": "B", "st": "FINISHED", "uid": 10745335, "nombre": "EVA SOSA BAUTISTA", "nro": "100987", "ev": "ENRIQUE MENDEZ BARCENAS", "sp": 79.17, "fs": 73.5, "gs": null, "cs": 79.165, "area": "SEGURIDAD PATRIMONIAL", "jer": "Administrativo", "sede": "PLANTA CIVAC", "puesto": "ELEMENTO DE SEGURIDAD", "gen": "FEMENINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 4], ["Comunicación", 4], ["Ética y valores", 5], ["Orientación al cliente", 4], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 4]], "pf": [3.75, 4, 4, 4]}, {"rid": 6749256, "t": "B", "st": "FINISHED", "uid": 10745336, "nombre": "ELIZABETH FLORES HERNANDEZ", "nro": "101380", "ev": "ENRIQUE MENDEZ BARCENAS", "sp": 79.17, "fs": 75.0, "gs": null, "cs": 79.165, "area": "SEGURIDAD PATRIMONIAL", "jer": "Administrativo", "sede": "PLANTA CIVAC", "puesto": "ELEMENTO DE SEGURIDAD", "gen": "FEMENINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 4], ["Comunicación", 4], ["Ética y valores", 5], ["Orientación al cliente", 4], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 4]], "pf": [4, 4, 4, 4]}, {"rid": 6749278, "t": "B", "st": "FINISHED", "uid": 10745337, "nombre": "JOSE RODRIGO JIMENEZ GONZALEZ", "nro": "102024", "ev": "ENRIQUE MENDEZ BARCENAS", "sp": 75.0, "fs": 69.75, "gs": null, "cs": 74.998, "area": "SEGURIDAD PATRIMONIAL", "jer": "Administrativo", "sede": "PLANTA CIVAC", "puesto": "ELEMENTO DE SEGURIDAD", "gen": "MASCULINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 3], ["Comunicación", 4], ["Ética y valores", 5], ["Orientación al cliente", 4], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 4]], "pf": [4, 4, 4, 3.25]}, {"rid": 6749264, "t": "B", "st": "FINISHED", "uid": 10745338, "nombre": "HERIBERTO ROMAN ORTEGA", "nro": "102090", "ev": "ENRIQUE MENDEZ BARCENAS", "sp": 79.17, "fs": 73.25, "gs": null, "cs": 79.165, "area": "SEGURIDAD PATRIMONIAL", "jer": "Administrativo", "sede": "PLANTA CIVAC", "puesto": "ELEMENTO DE SEGURIDAD", "gen": "MASCULINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 4], ["Comunicación", 4], ["Ética y valores", 5], ["Orientación al cliente", 4], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 4]], "pf": [3.75, 4.0, 4.25, 3.75]}, {"rid": 6749270, "t": "B", "st": "FINISHED", "uid": 10745339, "nombre": "JAZMIN ESTEFANIA TRIGUEROS JIMENEZ", "nro": "102091", "ev": "ENRIQUE MENDEZ BARCENAS", "sp": 79.17, "fs": 75.0, "gs": null, "cs": 79.165, "area": "SEGURIDAD PATRIMONIAL", "jer": "Administrativo", "sede": "PLANTA CIVAC", "puesto": "ELEMENTO DE SEGURIDAD", "gen": "FEMENINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 4], ["Comunicación", 4], ["Ética y valores", 5], ["Orientación al cliente", 4], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 4]], "pf": [4, 4, 4, 4]}, {"rid": 6749272, "t": "B", "st": "FINISHED", "uid": 10745340, "nombre": "JOSE ALBERTO REYES DIAZ", "nro": "102474", "ev": "ENRIQUE MENDEZ BARCENAS", "sp": 75.0, "fs": 65.75, "gs": null, "cs": 74.998, "area": "SEGURIDAD PATRIMONIAL", "jer": "Administrativo", "sede": "PLANTA CIVAC", "puesto": "ELEMENTO DE SEGURIDAD", "gen": "MASCULINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 3], ["Comunicación", 4], ["Ética y valores", 5], ["Orientación al cliente", 4], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 4]], "pf": [3.25, 3.75, 3.75, 3.75]}, {"rid": 6749253, "t": "B", "st": "FINISHED", "uid": 10745341, "nombre": "DANIEL FLORES GOMEZ", "nro": "102484", "ev": "ENRIQUE MENDEZ BARCENAS", "sp": 79.17, "fs": 70.0, "gs": null, "cs": 79.165, "area": "SEGURIDAD PATRIMONIAL", "jer": "Administrativo", "sede": "PLANTA CIVAC", "puesto": "ELEMENTO DE SEGURIDAD", "gen": "MASCULINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 4], ["Comunicación", 4], ["Ética y valores", 5], ["Orientación al cliente", 4], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 4]], "pf": [3.75, 4.0, 4.0, 3.5]}, {"rid": 6749263, "t": "B", "st": "EDIT_REQUESTED", "uid": 10745342, "nombre": "HAZEL ALEJANDRO MENDOZA IBAÑEZ", "nro": "102139", "ev": "JUAN FERNANDO GARCIA RUIZ", "sp": 58.33, "fs": 50.0, "gs": null, "cs": 58.333, "area": "SEGURIDAD PATRIMONIAL", "jer": "Coordinador", "sede": "PLANTA CIVAC", "puesto": "COORD DE SEG LABORAL Y PROTECC CIVIL", "gen": "MASCULINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 3], ["Comunicación", 3], ["Ética y valores", 4], ["Orientación al cliente", 3], ["Orientación a resultados", 3], ["Trabajo en Equipo (Colaboración)", 4]], "pf": [3, 3, 3, 3]}, {"rid": 6749271, "t": "B", "st": "FINISHED", "uid": 10745343, "nombre": "JIMENA ABIGAIL HIPOLITO TORRES", "nro": "102475", "ev": "JUAN FERNANDO GARCIA RUIZ", "sp": 75.0, "fs": 61.25, "gs": null, "cs": 75.0, "area": "SEGURIDAD PATRIMONIAL", "jer": "Administrativo", "sede": "OFICINAS CDMX", "puesto": "ANALISTA DE GESTION DOCUMENTAL", "gen": "FEMENINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 4], ["Comunicación", 4], ["Ética y valores", 4], ["Orientación al cliente", 4], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 4]], "pf": [4.0, 3.0, 3.0, 3.75]}, {"rid": 6749258, "t": "B", "st": "FINISHED", "uid": 10745345, "nombre": "ESTER VARGAS FLORES", "nro": "102255", "ev": "JOSE MARTIN ANGELES MENDOZA", "sp": 41.67, "fs": 42.25, "gs": null, "cs": 41.665, "area": "SEGURIDAD PATRIMONIAL", "jer": "Administrativo", "sede": "OFICINAS CIVAC", "puesto": "ANALISTA DE GESTION AMBIENTAL", "gen": "FEMENINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 2], ["Comunicación", 3], ["Ética y valores", 3], ["Orientación al cliente", 3], ["Orientación a resultados", 2], ["Trabajo en Equipo (Colaboración)", 3]], "pf": [2.5, 2.75, 2.75, 2.75]}, {"rid": 6749287, "t": "B", "st": "PENDING", "uid": 11056011, "nombre": "YESSICA REYES RUELAS", "nro": "101355", "ev": "ITZEL TZITLALI ARIAS CAMARGO", "sp": null, "fs": null, "gs": null, "cs": null, "area": "RECURSOS HUMANOS", "jer": "Administrativo", "sede": "OFICINAS CDMX", "puesto": "RECEPCIONISTA DF", "gen": "FEMENINO", "con": "Tiempo Indeterminado"}, {"rid": 6749288, "t": "B", "st": "FINISHED", "uid": 11056647, "nombre": "YESSICA NOEMI MARTINEZ ZACATENCO", "nro": "101619", "ev": "GABRIELA HERRERA BONILLA", "sp": 79.17, "fs": 64.25, "gs": null, "cs": 79.168, "area": "RECURSOS HUMANOS", "jer": "Administrativo", "sede": "OFICINAS CDMX", "puesto": "AUXILIAR DE LIMPIEZA", "gen": "FEMENINO", "con": "Tiempo Indeterminado", "comp": [["Análisis", 3], ["Comunicación", 3], ["Ética y valores", 5], ["Orientación al cliente", 5], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 5]], "pf": [3.25, 3.25, 4.0, 3.75]}, {"rid": 6749273, "t": "B", "st": "FINISHED", "uid": 11056658, "nombre": "JOSE CARLOS DIAZ FLORES", "nro": "102538", "ev": "HAZEL ALEJANDRO MENDOZA IBAÑEZ", "sp": 75.0, "fs": 67.25, "gs": null, "cs": 75.0, "area": "SEGURIDAD PATRIMONIAL", "jer": "Administrativo", "sede": "OFICINAS CIVAC", "puesto": "ANALISTA DE SEGURIDAD LABORAL", "gen": "MASCULINO", "con": "Capacitación inicial 90 días", "comp": [["Análisis", 3], ["Comunicación", 4], ["Ética y valores", 4], ["Orientación al cliente", 4], ["Orientación a resultados", 4], ["Trabajo en Equipo (Colaboración)", 5]], "pf": [4.0, 3.5, 3.5, 3.75]}];
+const BOX = {
+ 1:{t:"Bajo Desempeño",l:"Bajo Desempeño / Bajo Potencial",c:"var(--b1)",hex:"#ee2a2e",dark:1},
+ 2:{t:"Contribuidor Sólido",l:"Desempeño Óptimo / Bajo Potencial",c:"var(--b2)",hex:"#0b4f8f",dark:1},
+ 3:{t:"Potencial por Desarrollar",l:"Bajo Desempeño / Potencial Promedio",c:"var(--b3)",hex:"#fdbe00"},
+ 4:{t:"Experto Especialista",l:"Alto Desempeño / Bajo Potencial",c:"var(--b4)",hex:"#0b4f8f",dark:1},
+ 5:{t:"Colaborador Clave",l:"Desempeño Óptimo / Potencial Promedio",c:"var(--b5)",hex:"#b9ddf7"},
+ 6:{t:"Talento Emergente",l:"Bajo Desempeño / Alto Potencial",c:"var(--b6)",hex:"#b5e3a1"},
+ 7:{t:"Alto Desempeño con Potencial",l:"Alto Desempeño / Potencial Promedio",c:"var(--b7)",hex:"#b5e3a1"},
+ 8:{t:"Futuro Talento",l:"Desempeño Óptimo / Alto Potencial",c:"var(--b8)",hex:"#b5e3a1"},
+ 9:{t:"Talento Estratégico",l:"Alto Desempeño / Alto Potencial",c:"var(--b9)",hex:"#12a84b",dark:1}
+};
+const LAYOUT=[4,7,9,2,5,8,1,3,6]; // filas: desempeño alto→bajo ; columnas: potencial bajo→alto
+const MAP={"A|B":4,"A|M":7,"A|A":9,"M|B":2,"M|M":5,"M|A":8,"B|B":1,"B|M":3,"B|A":6};
+const FAC=["Agilidad Mental","Agilidad para el Cambio","Agilidad con Personas","Agilidad para Obtener Resultados"];
+const to5 = p => p==null?null:1+4*p/100;
+const r1 = x => x==null?null:Math.round(x*10)/10;
+const lvl = x => x==null?null:(r1(x)>=4.1?"A":(r1(x)>=3.0?"M":"B"));
+const LVD={A:"Alto Desempeño",M:"Desempeño Óptimo",B:"Bajo Desempeño"};
+const LVP={A:"Alto Potencial",M:"Potencial Medio",B:"Bajo Potencial"};
+const fmt = x => x==null?"—":x.toFixed(2);
+let W=100;
+
+function people(){
+  const by={};
+  REV.forEach(r=>{(by[r.uid]=by[r.uid]||[]).push(r)});
+  const out=[],pend=[];
+  Object.values(by).forEach(rs=>{
+    const b=rs.find(r=>r.t==="B"), p=rs.find(r=>r.t==="P"&&r.st==="FINISHED");
+    const base=b||rs[0];
+    if(!b||b.st!=="FINISHED"){pend.push({...base,stl:b?({PENDING:"Pendiente",EDIT_REQUESTED:"Edición solicitada"}[b.st]||b.st):"Sin evaluación de jefe",peer:!!p});return;}
+    const w=(W===50&&p)?0.5:1;
+    const mix=(a,c)=>a==null?null:(c==null||w===1?a:w*a+(1-w)*c);
+    const d=to5(mix(b.sp,p&&p.sp)), po=to5(mix(b.fs,p&&p.fs));
+    const g=b.gs==null?null:to5(mix(b.gs,p&&p.gs)), c=to5(mix(b.cs,p&&p.cs));
+    const pf=b.pf.map((v,i)=>p&&w!==1?w*v+(1-w)*p.pf[i]:v);
+    const ld=lvl(d), lp=lvl(po);
+    out.push({uid:base.uid,nombre:base.nombre,nro:base.nro,area:base.area,jer:base.jer,sede:base.sede,puesto:base.puesto,gen:base.gen,con:base.con,
+      jefe:b.ev,peerEv:p?p.ev:null,hasPeer:!!p,d,po,g,c,pf,ld,lp,box:MAP[ld+"|"+lp],b,p});
+  });
+  return {out,pend};
+}
+
+const FILTERS=[["area","Área"],["jer","Jerarquía"],["sede","Sede"],["puesto","Puesto"],["gen","Género"],["con","Tipo de contrato"],["jefe","Jefe directo (evaluador)"],["box","Cuadrante 9 Box"]];
+const F={q:""};
+function buildFilters(){
+  const {out,pend}=people(); const all=[...out,...pend.map(x=>({...x,jefe:x.ev}))];
+  let h=`<div><label>Buscar colaborador</label><input type="search" id="q" placeholder="Nombre o número"></div>`;
+  FILTERS.forEach(([k,lab])=>{
+    let vals;
+    if(k==="box") vals=[1,2,3,4,5,6,7,8,9].map(n=>[n,n+" · "+BOX[n].t]);
+    else vals=[...new Set(all.map(x=>x[k]).filter(Boolean))].sort().map(v=>[v,v]);
+    h+=`<div><label>${lab}</label><select data-k="${k}"><option value="">Todos</option>${vals.map(([v,t])=>`<option value="${esc(v)}">${esc(t)}</option>`).join("")}</select></div>`;
+  });
+  document.getElementById("filters").innerHTML=h;
+  document.querySelectorAll("#filters select").forEach(s=>s.onchange=()=>{F[s.dataset.k]=s.value;render()});
+  document.getElementById("q").oninput=e=>{F.q=e.target.value.toLowerCase();render()};
+}
+function resetF(){Object.keys(F).forEach(k=>F[k]="");document.querySelectorAll("#filters select").forEach(s=>s.value="");document.getElementById("q").value="";render()}
+function pass(x,isPend){
+  for(const [k] of FILTERS){ if(!F[k]) continue;
+    if(k==="box"){ if(isPend|| String(x.box)!==F.box) return false; continue;}
+    const v=k==="jefe"&&isPend?x.ev:x[k]; if(String(v)!==F[k]) return false;}
+  if(F.q && !(x.nombre.toLowerCase().includes(F.q)||String(x.nro).toLowerCase().includes(F.q))) return false;
+  return true;
+}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+const pill=(l,t)=>l?`<span class="pill lv${l}">${t[l]}</span>`:"—";
+
+let SORT={k:"box",dir:-1}, CUR=[];
+function render(){
+  const {out,pend}=people();
+  const rows=out.filter(x=>pass(x,false)), prow=pend.filter(x=>pass(x,true));
+  CUR=rows;
+  // KPIs
+  const tot=out.length+pend.length, avg=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:null;
+  const k9=rows.filter(x=>x.box===9).length, k1=rows.filter(x=>x.box===1).length;
+  document.getElementById("kpis").innerHTML=[
+    [rows.length,"En la matriz (filtro actual)"],[prow.length,"Sin resultado todavía"],
+    [tot? Math.round(out.length/tot*100)+"%":"—","Avance del ciclo (total)"],
+    [fmt(avg(rows.map(x=>x.d))),"Desempeño promedio (1–5)"],[fmt(avg(rows.map(x=>x.po))),"Potencial promedio (1–5)"],
+    [k9,"Talento Estratégico (9)"],[k1,"Bajo Desempeño (1)"]
+  ].map(([v,l])=>`<div class="kpi"><b>${v}</b><span>${l}</span></div>`).join("");
+  // grid
+  document.getElementById("nbcount").textContent=`· ${rows.length} personas`;
+  document.getElementById("grid9").innerHTML=LAYOUT.map(n=>{
+    const ps=rows.filter(x=>x.box===n).sort((a,b)=>b.d+b.po-(a.d+a.po));
+    const pct=rows.length?Math.round(ps.length/rows.length*100):0;
+    return `<div class="box ${BOX[n].dark?"dark":""}" style="background:${BOX[n].c}">
+      <div class="hd"><div class="num">${n}</div><div class="ttl">${BOX[n].t}</div><div class="lv">${BOX[n].l}</div><div class="cnt">${ps.length} · ${pct}%</div></div>
+      <div class="chips">${ps.map(x=>`<span class="chip" title="${esc(x.nombre)} — Desempeño ${fmt(x.d)} · Potencial ${fmt(x.po)}" onclick="openM(${x.uid})">${esc(short(x.nombre))}</span>`).join("")||'<div class="empty" style="color:inherit;opacity:.7">Sin personas</div>'}</div></div>`}).join("");
+  // table
+  const cols=[["nombre","Colaborador"],["nro","Nro"],["area","Área"],["puesto","Puesto"],["jer","Jerarquía"],["sede","Sede"],["jefe","Jefe directo"],
+    ["g","Objetivos",1],["c","Competencias",1],["d","Desempeño",1],["ld","Nivel desempeño"],["po","Potencial",1],["lp","Nivel potencial"],
+    ["pf0","Ag. Mental",1],["pf1","Ag. Cambio",1],["pf2","Ag. Personas",1],["pf3","Ag. Resultados",1],["box","Cuadrante"]];
+  const val=(x,k)=>k.startsWith("pf")?x.pf[+k[2]]:x[k];
+  rows.sort((a,b)=>{let A=val(a,SORT.k),B=val(b,SORT.k);if(SORT.k==="box"){A=a.box*100+a.d+a.po;B=b.box*100+b.d+b.po}
+    if(A==null)return 1;if(B==null)return -1;return (A>B?1:A<B?-1:0)*SORT.dir});
+  document.querySelector("#tbl thead").innerHTML="<tr>"+cols.map(([k,l])=>`<th data-k="${k}">${l}${SORT.k===k?(SORT.dir>0?" ▲":" ▼"):""}</th>`).join("")+"</tr>";
+  document.querySelectorAll("#tbl th").forEach(th=>th.onclick=()=>{const k=th.dataset.k;SORT={k,dir:SORT.k===k?-SORT.dir:(["nombre","nro","area","puesto","jer","sede","jefe"].includes(k)?1:-1)};render()});
+  document.querySelector("#tbl tbody").innerHTML=rows.map(x=>`<tr onclick="openM(${x.uid})">
+    <td><b>${esc(x.nombre)}</b>${x.hasPeer?' <span class="pill lvM" title="Tiene evaluación de pares">+ pares</span>':""}</td><td>${esc(x.nro)}</td><td>${esc(x.area)}</td><td>${esc(x.puesto)}</td><td>${esc(x.jer)}</td><td>${esc(x.sede)}</td><td>${esc(x.jefe)}</td>
+    <td class="n">${x.g==null?'<span class="note">sin objetivos</span>':fmt(x.g)}</td><td class="n">${fmt(x.c)}</td><td class="n"><b>${fmt(x.d)}</b></td><td>${pill(x.ld,LVD)}</td>
+    <td class="n"><b>${fmt(x.po)}</b></td><td>${pill(x.lp,LVP)}</td>${x.pf.map(v=>`<td class="n">${fmt(v)}</td>`).join("")}
+    <td><span class="bx"><i class="sw" style="background:${BOX[x.box].hex}"></i>${x.box} · ${BOX[x.box].t}</span></td></tr>`).join("")
+    || `<tr><td colspan="18" class="empty">No hay personas con estos filtros</td></tr>`;
+  document.getElementById("tcount").textContent=`· ${rows.length} personas · clic en una fila para ver el detalle`;
+  document.querySelector("#ptbl tbody").innerHTML=prow.map(x=>`<tr style="cursor:default"><td>${esc(x.nombre)}</td><td>${esc(x.nro)}</td><td>${esc(x.area)}</td><td>${esc(x.puesto)}</td><td>${esc(x.ev)}</td><td>${esc(x.stl)}</td></tr>`).join("")||`<tr><td colspan="6" class="empty">Nadie pendiente con estos filtros</td></tr>`;
+  document.getElementById("pcount").textContent=`· ${prow.length}`;
+}
+function short(n){const p=n.split(" ");if(p.length<=2)return title(n);return title(p[0]+" "+p[p.length-2])}
+function title(s){return s.toLowerCase().replace(/(^|\s)\S/g,c=>c.toUpperCase())}
+
+function bar(v){return `<div class="bar"><i style="width:${v==null?0:(v-1)/4*100}%"></i></div>`}
+function revBlock(r,lab){
+  if(!r) return "";
+  const objs=r.obj?`<table class="mt"><thead><tr><th>Objetivo</th><th>Peso</th><th>Avance</th><th>Calificación</th></tr></thead><tbody>${r.obj.map(o=>`<tr style="cursor:default"><td style="white-space:normal">${esc(o[0])}</td><td class="n">${o[1]}%</td><td class="n">${o[3]}%</td><td class="n">${o[2]} · ${["","Insuficiente","Requiere mejora","Cumple","Sobresaliente","Excepcional"][o[2]]}</td></tr>`).join("")}</tbody></table>`:`<div class="note mt">Sin objetivos evaluados en este ciclo.</div>`;
+  const comps=`<table class="mt"><thead><tr><th>Competencia</th><th>Calificación</th></tr></thead><tbody>${(r.comp||[]).map(o=>`<tr style="cursor:default"><td>${esc(o[0])}</td><td class="n">${o[1]} · ${["","Insuficiente","Requiere mejora","Cumple","Sobresaliente","Excepcional"][o[1]]}</td></tr>`).join("")}</tbody></table>`;
+  return `<h3 class="mt" style="font-size:14px;margin-bottom:0">${lab} — ${esc(r.ev)}</h3>
+   <div class="note">Objetivos ${r.gs==null?"—":fmt(to5(r.gs))} · Competencias ${fmt(to5(r.cs))} · Desempeño ${fmt(to5(r.sp))} · Potencial ${fmt(to5(r.fs))}</div>${objs}${comps}`;
+}
+function openM(uid){
+  const x=people().out.find(p=>p.uid===uid); if(!x) return;
+  const B=BOX[x.box];
+  document.getElementById("modal").innerHTML=`<button class="x" onclick="closeM()">×</button>
+   <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><h2 style="margin:0">${esc(x.nombre)}</h2>
+   <span class="pill" style="background:${B.hex};color:${B.dark?"#fff":"#14213d"}">${x.box} · ${B.t}</span></div>
+   <div class="kv mt"><span>Nro</span><b>${esc(x.nro)}</b><span>Puesto</span><b>${esc(x.puesto)}</b><span>Área</span><b>${esc(x.area)}</b><span>Jerarquía / Sede</span><b>${esc(x.jer)} · ${esc(x.sede)}</b><span>Jefe directo</span><b>${esc(x.jefe)}</b>${x.hasPeer?`<span>Par evaluador</span><b>${esc(x.peerEv)}</b>`:""}</div>
+   <div class="mgrid">
+    <div class="mstat"><span>Desempeño</span><b>${fmt(x.d)}</b>${pill(x.ld,LVD)}${bar(x.d)}</div>
+    <div class="mstat"><span>Potencial</span><b>${fmt(x.po)}</b>${pill(x.lp,LVP)}${bar(x.po)}</div>
+    <div class="mstat"><span>Objetivos (70%)</span><b>${x.g==null?"—":fmt(x.g)}</b>${bar(x.g)}</div>
+    <div class="mstat"><span>Competencias (30%)</span><b>${fmt(x.c)}</b>${bar(x.c)}</div>
+   </div>
+   <h3 style="font-size:14px;margin:6px 0">Potencial por factor (Learning Agility)</h3>
+   ${x.pf.map((v,i)=>`<div style="display:grid;grid-template-columns:210px 1fr 44px;gap:8px;align-items:center;font-size:13px;margin-bottom:4px"><span>${FAC[i]}</span>${bar(v)}<b style="text-align:right">${fmt(v)}</b></div>`).join("")}
+   ${revBlock(x.b,"Evaluación del jefe")}${x.p?revBlock(x.p,"Evaluación de pares"):""}
+   ${x.hasPeer&&W===100?`<div class="warn">Esta persona tiene evaluación de pares. Con la configuración actual (jefe 100%) no impacta en su ubicación; elegí “Jefe 50% · Pares 50%” para verla combinada.</div>`:""}`;
+  document.getElementById("ov").classList.add("show");
+}
+function closeM(){document.getElementById("ov").classList.remove("show")}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeM()});
+
+function csv(rows,name){
+  const s="﻿"+rows.map(r=>r.map(v=>{v=v==null?"":String(v);return /[",;\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}).join(",")).join("\n");
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([s],{type:"text/csv;charset=utf-8"}));a.download=name;document.body.appendChild(a);a.click();a.remove();
+}
+const n2=v=>v==null?"":v.toFixed(2);
+function dlSummary(){
+  const h=["Colaborador","Nro","Área","Puesto","Jerarquía","Sede","Género","Tipo de contrato","Jefe directo","Par evaluador","Objetivos (1-5)","Competencias (1-5)","Desempeño (1-5)","Nivel desempeño","Potencial (1-5)","Nivel potencial",...FAC,"Cuadrante","Nombre cuadrante","Ponderación jefe/pares"];
+  csv([h,...CUR.map(x=>[x.nombre,x.nro,x.area,x.puesto,x.jer,x.sede,x.gen,x.con,x.jefe,x.peerEv||"",n2(x.g),n2(x.c),n2(x.d),LVD[x.ld],n2(x.po),LVP[x.lp],...x.pf.map(n2),x.box,BOX[x.box].t,W===100?"Jefe 100%":"50/50"])],"9box_IFA_resumen.csv");
+}
+function dlDetail(){
+  const h=["Colaborador","Nro","Área","Puesto","Jefe directo","Cuadrante","Tipo de evaluación","Evaluador","Sección","Ítem","Peso %","Avance %","Calificación (1-5)"];
+  const out=[h], L=["","Insuficiente","Requiere mejora","Cumple","Sobresaliente","Excepcional"];
+  CUR.forEach(x=>[[x.b,"Jefe"],[x.p,"Pares"]].forEach(([r,t])=>{ if(!r) return;
+    const base=[x.nombre,x.nro,x.area,x.puesto,x.jefe,x.box+" · "+BOX[x.box].t,t,r.ev];
+    (r.obj||[]).forEach(o=>out.push([...base,"Objetivo",o[0],o[1],o[3],o[2]+" - "+L[o[2]]]));
+    (r.comp||[]).forEach(o=>out.push([...base,"Competencia",o[0],"","",o[1]+" - "+L[o[1]]]));
+    r.pf.forEach((v,i)=>out.push([...base,"Potencial",FAC[i],i===3?28:24,"",n2(v)]));
+    out.push([...base,"Total","Desempeño","","",n2(to5(r.sp))]);
+    out.push([...base,"Total","Potencial","","",n2(to5(r.fs))]);
+  }));
+  csv(out,"9box_IFA_detalle.csv");
+}
+document.querySelectorAll("#wseg button").forEach(b=>b.onclick=()=>{W=+b.dataset.w;document.querySelectorAll("#wseg button").forEach(o=>o.classList.toggle("on",o===b));render()});
+buildFilters();render();
+</script>
+</body>
+</html>
